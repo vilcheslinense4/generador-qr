@@ -3,57 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QR Pro - Mi Proyecto</title>
+    <title>QR Pro</title>
     <style>
-        body {
-            background-color: #0b0f1a;
-            color: #ffffff;
-            font-family: -apple-system, BlinkMacSystemFont, sans-serif;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            margin: 0;
-        }
-        .card {
-            background: #161e2e;
-            padding: 30px;
-            border-radius: 20px;
-            border: 1px solid #38bdf8;
-            text-align: center;
-            width: 85%;
-            max-width: 350px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
-        }
+        body { background-color: #0b0f1a; color: #ffffff; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        .card { background: #161e2e; padding: 30px; border-radius: 20px; border: 1px solid #38bdf8; text-align: center; width: 85%; max-width: 350px; }
         h2 { color: #38bdf8; margin-top: 0; }
-        input {
-            width: 100%;
-            padding: 12px;
-            border-radius: 10px;
-            border: 1px solid #1f2937;
-            background: #0b0f1a;
-            color: white;
-            margin: 20px 0;
-            box-sizing: border-box;
-            font-size: 16px; /* Evita que el iPhone haga zoom al escribir */
-        }
-        #qr-box {
-            background: white;
-            padding: 15px;
-            border-radius: 10px;
-            display: inline-block;
-        }
-        img { display: block; }
+        input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #1f2937; background: #0b0f1a; color: white; margin: 20px 0; box-sizing: border-box; font-size: 16px; }
+        #qr-box { background: white; padding: 15px; border-radius: 10px; display: inline-block; min-height: 160px; min-width: 160px; }
+        img { display: block; width: 160px; height: 160px; }
     </style>
 </head>
 <body>
 
 <div class="card">
     <h2>Generador QR</h2>
-    <input type="text" id="qr-input" placeholder="Escribe un enlace..." oninput="generar()">
+    <input type="text" id="qr-input" placeholder="Escribe algo aquí..." oninput="generar()">
     <div id="qr-box">
-        <img src="https://chart.googleapis.com/chart?cht=qr&chl=Hola&chs=160x160" id="qr-img">
+        <img src="https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=Hola" id="qr-img">
     </div>
 </div>
 
@@ -62,7 +28,8 @@
         const texto = document.getElementById('qr-input').value;
         const imagen = document.getElementById('qr-img');
         if(texto.trim() !== "") {
-            imagen.src = `https://chart.googleapis.com/chart?cht=qr&chl=${encodeURIComponent(texto)}&chs=160x160`;
+            // Usamos una API alternativa más rápida y moderna
+            imagen.src = `https://api.qrserver.com/v1/create-qr-code/?size=160x160&data=${encodeURIComponent(texto)}`;
         }
     }
 </script>
