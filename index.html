@@ -7,12 +7,30 @@
     <!-- Cargamos la librería directamente -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
     <style>
-        body { background-color: #0b0f1a; color: #ffffff; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; height: 100vh; margin: 0; }
+        body { background-color: #0b0f1a; color: #ffffff; font-family: -apple-system, sans-serif; display: flex; flex-direction: column; align-items: center; justify-content: center; min-height: 100vh; margin: 0; }
         .card { background: #161e2e; padding: 30px; border-radius: 20px; border: 1px solid #38bdf8; text-align: center; width: 85%; max-width: 350px; box-shadow: 0 10px 25px rgba(0,0,0,0.5); }
         h2 { color: #38bdf8; margin-top: 0; }
-        input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #1f2937; background: #0b0f1a; color: white; margin: 20px 0; box-sizing: border-box; font-size: 16px; }
+        input { width: 100%; padding: 12px; border-radius: 10px; border: 1px solid #1f2937; background: #0b0f1a; color: white; margin: 20px 0; box-sizing: border-box; font-size: 16px; outline: none; }
+        input:focus { border-color: #38bdf8; }
         #qrcode { background: white; padding: 15px; border-radius: 10px; display: flex; justify-content: center; margin: 0 auto; }
         #qrcode img { width: 160px; height: 160px; }
+        
+        /* Estilo del botón volver */
+        .btn-volver {
+            margin-top: 30px;
+            padding: 10px 20px;
+            border: 1px solid #38bdf8;
+            border-radius: 30px;
+            color: #38bdf8;
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+        .btn-volver:hover {
+            background: #38bdf8;
+            color: #161e2e;
+        }
     </style>
 </head>
 <body>
@@ -22,6 +40,11 @@
     <input type="text" id="text" placeholder="Escribe algo..." oninput="generate()">
     <div id="qrcode"></div>
 </div>
+
+<!-- Botón de atrás -->
+<a href="https://vilcheslinense4.github.io/Mi-primer-portafolios/" class="btn-volver">
+    ← Volver al Portafolio
+</a>
 
 <script>
     // Inicializamos el QR con la palabra "Hola"
@@ -37,9 +60,9 @@
     function generate() {
         var data = document.getElementById("text").value;
         if (data.trim() === "") {
-            qrcode.clear(); // Limpia si no hay texto
+            qrcode.clear(); 
         } else {
-            qrcode.makeCode(data); // Genera el nuevo código
+            qrcode.makeCode(data); 
         }
     }
 </script>
